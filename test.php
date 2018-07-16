@@ -43,28 +43,29 @@
             foreach ($currentTest as $key => $test) {
 
                 if (!isset($_POST['question'.($key + 1)])) {
-                    echo "Необходимо ответить на все вопросы";
-                    break;
+                    ?>
+                        <p style="color: red">Необходимо ответить на все вопросы</p>
+                    <?                    
                 } else {
                     if ($test['trueAnswer'] === $_POST['question'.($key + 1)]) {
                          $correctAnswers++;
-                    }
+                        ?>
 
+                        <div>
+                            <p>Всего вопросов: <?= $totalQuestions ?></p>
+                            <p>Правильных ответов: <?= $correctAnswers ?></p>
+                            <p>Ваш результат: <?= round($correctAnswers / $totalQuestions * 100) ?>%</p>
+                        </div>
+
+                    <?
+                    }
                 }                 
             }
-            ?>
-
-            <div>
-                <p>Всего вопросов: <?= $totalQuestions ?></p>
-                <p>Правильных ответов: <?= $correctAnswers ?></p>
-                <p>Ваш результат: <?= round($correctAnswers / $totalQuestions * 100) ?>%</p>
-            </div>
-
-            <?
+            
         }        
     ?>
     
-    <a href="list.php">Перейти к списку тестов</a>
+    <a href="list.php" style="display: block">Перейти к списку тестов</a>
 
 </body>
 </html>
